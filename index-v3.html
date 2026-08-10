@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Protect Your Savings - Cyber Security Masterclass</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <!-- Interactive Quiz CSS -->
+  <style>
+    .vsl-hero {
+      background: linear-gradient(180deg, rgba(10,14,23,0.95) 0%, rgba(10,14,23,1) 100%), url('img/hero-bg.jpg') center/cover no-repeat;
+      padding: 100px 0 60px;
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+    }
+    
+    .video-placeholder {
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      border-radius: 12px;
+      aspect-ratio: 16 / 9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+    .video-placeholder:hover {
+      border-color: var(--primary-cyan);
+      box-shadow: 0 10px 40px rgba(0, 242, 254, 0.2);
+    }
+    .play-button {
+      width: 80px;
+      height: 80px;
+      background: rgba(0, 242, 254, 0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      border: 2px solid var(--primary-cyan);
+      transition: transform 0.3s ease;
+    }
+    .video-placeholder:hover .play-button {
+      transform: scale(1.1);
+      background: rgba(0, 242, 254, 0.4);
+    }
+    .play-button svg {
+      fill: var(--primary-cyan);
+      margin-left: 5px;
+    }
+
+    .threat-card {
+      border: 1px solid rgba(255, 51, 102, 0.3);
+      background: rgba(20, 20, 25, 0.6);
+      border-radius: 10px;
+      padding: 25px 20px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .threat-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent-red);
+      background: rgba(255, 51, 102, 0.1);
+    }
+    
+    .quiz-container {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 40px;
+    }
+    
+    .sms-mockup {
+      background: #1c1c1e;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: left;
+    }
+    .sms-mockup:hover {
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+    .sms-mockup.selected {
+      border-color: var(--primary-cyan);
+    }
+    .sms-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .sms-icon {
+      width: 40px;
+      height: 40px;
+      background: #333;
+      border-radius: 50%;
+      margin-right: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .sms-sender {
+      color: white;
+      font-weight: 600;
+      margin: 0;
+    }
+    .sms-text {
+      color: #e5e5ea;
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+    .sms-link {
+      color: #0a84ff;
+      text-decoration: underline;
+    }
+    
+    .price-compare-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    .price-compare-card.highlight {
+      background: rgba(0, 242, 254, 0.1);
+      border: 1px solid var(--primary-cyan);
+    }
+    
+    .news-masonry {
+      column-count: 2;
+      column-gap: 20px;
+    }
+    @media (max-width: 767px) {
+      .news-masonry {
+        column-count: 1;
+      }
+    }
+    .news-item {
+      break-inside: avoid;
+      margin-bottom: 20px;
+      background: white;
+      border-radius: 8px;
+      padding: 15px;
+      border-left: 4px solid var(--accent-red);
+    }
+    .news-item h5 {
+      color: #1a1a1a;
+      font-weight: 700;
+      font-size: 1.1rem;
+      line-height: 1.4;
+      margin-bottom: 10px;
+    }
+    .news-source {
+      color: #666;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. The Cinematic Hero -->
+  <section class="vsl-hero text-center">
+    <div class="container hero-content">
+      <img src="img/logo-white.png" alt="Logo" class="hero-logo reveal mx-auto d-block mb-4" style="max-height: 60px;">
+      
+      <p class="text-cyan text-uppercase fw-bold letter-spacing-1 reveal reveal-delay-1 mb-2">Imagine This Happening Tomorrow Morning...</p>
+      
+      <h1 class="hero-title reveal reveal-delay-1 text-white mb-4" style="font-size: clamp(1.8rem, 3.5vw, 2.5rem); line-height: 1.4; font-weight: 500;">
+        You receive a WhatsApp message from your bank.<br>
+        Everything looks genuine. You click the link.<br>
+        <span class="text-red fw-bold">Five minutes later... ₹2,84,000 disappears.</span>
+      </h1>
+      
+      <h2 class="text-white reveal reveal-delay-2 mb-5" style="font-size: clamp(1.2rem, 2vw, 1.5rem); max-width: 900px; margin: 0 auto; font-weight: 400;">
+        Could you stop it before it's too late?<br><br>
+        In just 3 hours, learn how cyber criminals actually fool ordinary people—and how to protect yourself, your family, and your money.
+      </h2>
+
+      <!-- Cinematic Video Placeholder -->
+      <div class="row justify-content-center reveal reveal-delay-2 mb-5">
+        <div class="col-lg-8">
+          <div class="video-placeholder">
+            <div class="play-button">
+              <svg width="30" height="30" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <h4 class="text-white">Watch The Trailer</h4>
+            <p class="text-muted small">Turn on your sound</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-3 d-flex flex-wrap justify-content-center gap-3 mb-5">
+        <div class="badge bg-dark border border-secondary p-2 fs-6 text-white"><span class="text-cyan me-2">✔</span> Mobile Security</div>
+        <div class="badge bg-dark border border-secondary p-2 fs-6 text-white"><span class="text-cyan me-2">✔</span> Banking Fraud Prevention</div>
+        <div class="badge bg-dark border border-secondary p-2 fs-6 text-white"><span class="text-cyan me-2">✔</span> AI Scam Detection</div>
+        <div class="badge bg-dark border border-secondary p-2 fs-6 text-white"><span class="text-red me-2">🔥</span> Live Hacking Demonstrations</div>
+      </div>
+      
+      <div class="mt-2 reveal reveal-delay-3">
+        <button class="btn-cyber open-register-modal" style="font-size: 1.3rem; padding: 15px 40px;">Reserve My Seat – ₹1,799</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Why Most People Get Hacked -->
+  <section class="section-padding bg-dark text-center">
+    <div class="container reveal">
+      <h2 class="section-title">Why Most People Get <span class="text-red">Hacked</span></h2>
+      <div class="divider-center"></div>
+      <p class="fs-4 text-white mx-auto mb-5" style="max-width: 700px;">
+        Not because they're stupid.<br>
+        Because nobody ever taught them what criminals actually do.
+      </p>
+
+      <div class="row g-4 justify-content-center">
+        <div class="col-md-4 col-sm-6">
+          <div class="threat-card">
+            <h1 class="mb-3">📱</h1>
+            <h4 class="text-white m-0"><span class="text-red">❌</span> Fake QR Scams</h4>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+          <div class="threat-card">
+            <h1 class="mb-3">📦</h1>
+            <h4 class="text-white m-0"><span class="text-red">❌</span> Fake Courier SMS</h4>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+          <div class="threat-card">
+            <h1 class="mb-3">🗣️</h1>
+            <h4 class="text-white m-0"><span class="text-red">❌</span> Deepfake Voice</h4>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+          <div class="threat-card">
+            <h1 class="mb-3">💬</h1>
+            <h4 class="text-white m-0"><span class="text-red">❌</span> WhatsApp Hijacks</h4>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+          <div class="threat-card">
+            <h1 class="mb-3">📈</h1>
+            <h4 class="text-white m-0"><span class="text-red">❌</span> Investment Frauds</h4>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+          <div class="threat-card">
+            <h1 class="mb-3">🖥️</h1>
+            <h4 class="text-white m-0"><span class="text-red">❌</span> Screen Sharing Apps</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Interactive Quiz: Spot the Fake -->
+  <section class="section-padding section-bg-alt">
+    <div class="container text-center reveal">
+      <h2 class="section-title">Could You Spot The <span class="text-cyan">Fake One?</span></h2>
+      <div class="divider-center"></div>
+      <p class="fs-5 text-muted mb-5">One of these SMS messages is from a real courier. The other will drain your bank account. Click the one you think is FAKE.</p>
+
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="quiz-container" id="quizContainer">
+            <div class="row g-4">
+              <!-- SMS Option A -->
+              <div class="col-md-6">
+                <div class="sms-mockup" onclick="checkQuiz('A')">
+                  <div class="sms-header">
+                    <div class="sms-icon text-white fs-5">📦</div>
+                    <p class="sms-sender">IndiaPost</p>
+                  </div>
+                  <p class="sms-text">
+                    Your package is waiting for delivery. Please update your address and pay the ₹5 re-delivery fee here: <br>
+                    <span class="sms-link">indiapost-track-gov.in/update</span>
+                  </p>
+                </div>
+              </div>
+              <!-- SMS Option B -->
+              <div class="col-md-6">
+                <div class="sms-mockup" onclick="checkQuiz('B')">
+                  <div class="sms-header">
+                    <div class="sms-icon text-white fs-5">📦</div>
+                    <p class="sms-sender">BlueDart</p>
+                  </div>
+                  <p class="sms-text">
+                    Your shipment AWB 49281739 is out for delivery today before 8 PM. Track status: <br>
+                    <span class="sms-link">bluedart.com/track</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Quiz Result area -->
+            <div id="quizResult" class="mt-4 p-4 rounded" style="display: none; background: rgba(0,0,0,0.5);">
+              <h3 id="quizResultTitle" class="mb-2"></h3>
+              <p id="quizResultText" class="text-muted fs-5 mb-0"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Live Demonstrations -->
+  <section class="section-padding">
+    <div class="container text-center reveal">
+      <h2 class="section-title">Watch A Hacker...</h2>
+      <div class="divider-center"></div>
+      <p class="mb-5 text-muted fs-5">We don't just talk about theory. You will witness real attacks.</p>
+
+      <div class="max-w-75 mx-auto text-start">
+        <div class="glass-panel p-4 mb-4">
+          <h4 class="text-white d-flex align-items-center gap-3 mb-0">
+            <span class="text-red fs-2">✓</span> Clone a payment QR Code in seconds
+          </h4>
+        </div>
+        <div class="glass-panel p-4 mb-4">
+          <h4 class="text-white d-flex align-items-center gap-3 mb-0">
+            <span class="text-red fs-2">✓</span> Crack weak passwords in real-time
+          </h4>
+        </div>
+        <div class="glass-panel p-4 mb-4">
+          <h4 class="text-white d-flex align-items-center gap-3 mb-0">
+            <span class="text-red fs-2">✓</span> Steal data from a public Wi-Fi network
+          </h4>
+        </div>
+        <div class="glass-panel p-4 mb-4">
+          <h4 class="text-white d-flex align-items-center gap-3 mb-0">
+            <span class="text-red fs-2">✓</span> Send completely fake WhatsApp messages
+          </h4>
+        </div>
+        <div class="glass-panel p-4">
+          <h4 class="text-white d-flex align-items-center gap-3 mb-0">
+            <span class="text-red fs-2">✓</span> Trick people using cloned AI voices
+          </h4>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Cost Anchor -->
+  <section class="section-padding bg-dark">
+    <div class="container text-center reveal">
+      <h2 class="section-title">This Workshop Could <span class="text-cyan">Save You Lakhs</span></h2>
+      <div class="divider-center"></div>
+      
+      <div class="row justify-content-center mt-5">
+        <div class="col-lg-8 text-start">
+          
+          <div class="price-compare-card">
+            <span class="text-white fs-4">Average Scam Loss</span>
+            <span class="text-red fw-bold fs-3">₹1.8 Lakh</span>
+          </div>
+          
+          <div class="price-compare-card">
+            <span class="text-white fs-4">Coffee for one month</span>
+            <span class="text-muted fs-3">₹2,000+</span>
+          </div>
+          
+          <div class="price-compare-card">
+            <span class="text-white fs-4">Netflix (per month)</span>
+            <span class="text-muted fs-3">₹649</span>
+          </div>
+          
+          <div class="price-compare-card highlight mt-5">
+            <span class="text-white fw-bold fs-3">This 3-Hour Masterclass</span>
+            <span class="text-cyan fw-bold" style="font-size: 3rem;">₹1,799</span>
+          </div>
+
+        </div>
+      </div>
+      
+      <div class="mt-5 text-center reveal">
+        <button class="btn-cyber open-register-modal" style="font-size: 1.3rem; padding: 15px 40px;">Protect My Money</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Meet The Expert -->
+  <section class="section-padding section-bg-alt">
+    <div class="container reveal">
+      <div class="row align-items-center justify-content-center">
+        <div class="col-lg-5 text-center mb-4 mb-lg-0">
+          <img src="img/expert-photo.png" alt="Nobby K. Sudharsan" class="img-fluid rounded border border-secondary" style="max-height: 400px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+        </div>
+        <div class="col-lg-6 text-center text-lg-start">
+          <h2 class="section-title mb-3">Meet Someone Who Knows How <span class="text-red">Criminals Think</span></h2>
+          <h4 class="text-cyan mb-4">Nobby K. Sudharsan</h4>
+          <p class="text-muted mb-4">Chief Cyber Security Consultant, Cyber Shield Foundation</p>
+          
+          <div class="d-flex flex-column gap-3">
+            <div class="d-flex align-items-center gap-3">
+              <span class="text-cyan fs-3 fw-bold">25</span>
+              <span class="text-white fs-5">Years in IT & Cyber Security</span>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+              <span class="text-cyan fs-3 fw-bold">100+</span>
+              <span class="text-white fs-5">Trainings Conducted</span>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+              <span class="text-cyan fs-3 fw-bold">3,000+</span>
+              <span class="text-white fs-5">Professionals Trained</span>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+              <span class="text-cyan fs-3 fw-bold">CEH</span>
+              <span class="text-white fs-5">Certified Ethical Hacker</span>
+            </div>
+          </div>
+          
+          <div class="mt-4 pt-3">
+             <img src="img/official-cyber-shield-logo.png" alt="Cyber Shield Foundation" style="max-height: 40px; background: white; padding: 5px; border-radius: 4px;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. The Reality Check (News) -->
+  <section class="section-padding">
+    <div class="container text-center reveal">
+      <h2 class="section-title">People Think: <br><span class="text-muted">"I'll never get hacked."</span></h2>
+      <div class="divider-center"></div>
+      <p class="text-white mb-5 fs-5">The news says otherwise.</p>
+      
+      <div class="row justify-content-center">
+        <div class="col-lg-10 text-start">
+          <div class="news-masonry">
+            <div class="news-item">
+              <div class="news-source">Times of India</div>
+              <h5>Man loses ₹4.5 lakh after clicking link in fake courier SMS</h5>
+            </div>
+            <div class="news-item">
+              <div class="news-source">The Hindu</div>
+              <h5>Doctor duped of ₹1.8 lakh scanning QR code for a ₹10 payment</h5>
+            </div>
+            <div class="news-item">
+              <div class="news-source">Economic Times</div>
+              <h5>AI Voice Cloning: Scammers use deepfake audio of daughter to extort ₹3 lakh</h5>
+            </div>
+            <div class="news-item">
+              <div class="news-source">News18</div>
+              <h5>WhatsApp Hijack: Contact sends malicious link, takes over entire account</h5>
+            </div>
+            <div class="news-item">
+              <div class="news-source">MoneyControl</div>
+              <h5>Screen sharing app fraud leaves retired professor without life savings</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Tangible Outcomes -->
+  <section class="section-padding bg-dark">
+    <div class="container text-center reveal">
+      <h2 class="section-title">What You'll Leave <span class="text-cyan">With</span></h2>
+      <div class="divider-center"></div>
+      
+      <div class="grid-3 text-start mt-5">
+        <div class="glass-panel p-4 d-flex align-items-center gap-3">
+          <span class="text-cyan fs-2">🔒</span>
+          <h4 class="text-white m-0">Phone Secured</h4>
+        </div>
+        <div class="glass-panel p-4 d-flex align-items-center gap-3">
+          <span class="text-cyan fs-2">🔑</span>
+          <h4 class="text-white m-0">Password Manager Installed</h4>
+        </div>
+        <div class="glass-panel p-4 d-flex align-items-center gap-3">
+          <span class="text-cyan fs-2">💬</span>
+          <h4 class="text-white m-0">WhatsApp Secured</h4>
+        </div>
+        <div class="glass-panel p-4 d-flex align-items-center gap-3">
+          <span class="text-cyan fs-2">🌐</span>
+          <h4 class="text-white m-0">Google Account Secured</h4>
+        </div>
+        <div class="glass-panel p-4 d-flex align-items-center gap-3">
+          <span class="text-cyan fs-2">📡</span>
+          <h4 class="text-white m-0">Home Wi-Fi Secured</h4>
+        </div>
+        <div class="glass-panel p-4 d-flex align-items-center gap-3">
+          <span class="text-cyan fs-2">📑</span>
+          <h4 class="text-white m-0">Certificate & Checklist</h4>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9 & 10. Scarcity & BIG CTA -->
+  <section id="register" class="section-padding section-bg-alt text-center" style="border-top: 1px solid rgba(255, 51, 102, 0.3);">
+    <div class="container reveal">
+      <h2 class="text-red fw-bold text-uppercase" style="font-size: 3rem;">16 Seats Left</h2>
+      <p class="text-white fs-4 mb-4">Registration closes once all 100 seats are filled.</p>
+      
+      <!-- Countdown Timer -->
+      <div id="countdown" class="d-flex justify-content-center flex-wrap gap-2 gap-md-4 mb-5 countdown-container">
+        <div class="countdown-box"><span id="days">00</span><small>Days</small></div>
+        <div class="countdown-box"><span id="hours">00</span><small>Hours</small></div>
+        <div class="countdown-box"><span id="minutes">00</span><small>Mins</small></div>
+        <div class="countdown-box"><span id="seconds">00</span><small>Secs</small></div>
+      </div>
+
+      <div class="glass-panel mx-auto p-5" style="max-width: 600px; border-color: var(--primary-cyan);">
+        <h3 class="text-white mb-3">Live Masterclass</h3>
+        <p class="text-muted fs-5 mb-4">27 August 2026 | 9:00 AM – 12:00 PM</p>
+        <div class="text-cyan fw-bold mb-4" style="font-size: 3.5rem;">₹1,799</div>
+        <button class="btn-cyber w-100 open-register-modal" style="font-size: 1.5rem; padding: 20px;">Protect My Money</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ / Details Section -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="row justify-content-center text-center text-muted">
+        <div class="col-md-8">
+           <p class="mb-2"><strong>Venue:</strong> Xcite Hub Spaces LLP, DOOR NO: 61/855, 2ND FLOOR, PK COMMERCIAL COMPLEX, CHEROOTY ROAD, KOZHIKODE - 673032</p>
+           <p class="mb-0"><strong>Contact:</strong> (+91) 9605521356 | contact@xcitehub.com</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/1234567890?text=I%20have%20a%20question%20about%20the%20Cyber%20Security%20Workshop" target="_blank" class="whatsapp-float" id="whatsappFloat">
+    <svg xmlns="http://www.w3.org/w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16">
+      <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+    </svg>
+  </a>
+
+  <!-- Mobile Sticky CTA -->
+  <div class="sticky-cta" id="stickyCta">
+    <div>
+      <div class="text-muted" style="font-size: 0.8rem;">16 Seats Left</div>
+      <div class="sticky-price text-cyan">₹1,799</div>
+    </div>
+    <button class="btn-cyber open-register-modal" style="padding: 0.6rem 1.2rem; font-size: 1rem;">Protect My Money</button>
+  </div>
+
+  <!-- Registration Modal -->
+  <div class="modal-overlay" id="registerModal" style="background: rgba(0,0,0,0.85); z-index: 99999 !important;">
+    <div class="modal-content" style="background: var(--bg-dark); border: 1px solid var(--neon-cyan);">
+      <button class="modal-close" id="closeModal">&times;</button>
+      <h3 class="text-white mb-1">Protect My Money</h3>
+      <p class="text-muted mb-4">Fill out the form below to register for the workshop.</p>
+      
+      <form id="leadForm">
+        <div class="form-group">
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" name="fullName" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" class="form-control" required>
+        </div>
+        
+        <button type="submit" class="btn-cyber w-100 mt-2" id="submitBtn">
+          <span>Submit & Register</span>
+          <div class="spinner" id="submitSpinner"></div>
+        </button>
+        
+        <div class="success-msg" id="successMsg">
+          🎉 Registration successful! We will contact you shortly.
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // --- Scroll Reveal Animations ---
+    document.addEventListener("DOMContentLoaded", function() {
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+      };
+
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.reveal').forEach((el) => {
+        observer.observe(el);
+      });
+    });
+
+    // --- Interactive Quiz Logic ---
+    let quizAnswered = false;
+    function checkQuiz(choice) {
+      if(quizAnswered) return;
+      quizAnswered = true;
+      
+      const resultArea = document.getElementById('quizResult');
+      const resultTitle = document.getElementById('quizResultTitle');
+      const resultText = document.getElementById('quizResultText');
+      
+      resultArea.style.display = 'block';
+      
+      if(choice === 'A') {
+        // Option A was the fake one
+        resultTitle.innerHTML = '<span class="text-cyan">✓ You spotted it.</span>';
+        resultTitle.className = 'text-cyan mb-2';
+        resultText.innerHTML = "Option A is fake. Notice the URL says <strong>indiapost-track-gov.in</strong> instead of the official domain. Thousands of people click links just like this every day because they look completely real.";
+      } else {
+        // Option B was the real one, so they failed to spot the fake
+        resultTitle.innerHTML = '<span class="text-red">❌ You just got hacked.</span>';
+        resultTitle.className = 'text-red mb-2';
+        resultText.innerHTML = "You clicked the real SMS, meaning you failed to identify Option A as the fake. Option A's URL is a deceptive clone. This is exactly how smart professionals lose lakhs in seconds.";
+      }
+    }
+
+    // --- Sticky Mobile CTA Logic ---
+    const stickyCta = document.getElementById('stickyCta');
+    const registerSection = document.getElementById('register');
+    
+    window.addEventListener('scroll', () => {
+      if (window.innerWidth < 768) {
+        const scrollPos = window.scrollY;
+        const regRect = registerSection.getBoundingClientRect();
+        
+        if (scrollPos > 300 && regRect.top > window.innerHeight) {
+          stickyCta.classList.add('visible');
+        } else {
+          stickyCta.classList.remove('visible');
+        }
+      }
+    });
+    
+    // --- Modal & Form Logic ---
+    const modal = document.getElementById('registerModal');
+    const closeModalBtn = document.getElementById('closeModal');
+    const openModalBtns = document.querySelectorAll('.open-register-modal');
+    const form = document.getElementById('leadForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const spinner = document.getElementById('submitSpinner');
+    const successMsg = document.getElementById('successMsg');
+    
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxq2Zn2RGtxYKbeKPdun-aGboJQfFIg45AqUEOTKE_wmbHRmJNQjaaRP2R9CBL_Vlf-/exec';
+    
+    openModalBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        modal.classList.add('active');
+      });
+    });
+    
+    closeModalBtn.addEventListener('click', () => {
+      modal.classList.remove('active');
+    });
+    
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('active');
+      }
+    });
+    
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      if(!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+      
+      const formData = new FormData(form);
+      const data = {
+        name: formData.get('fullName'),
+        email: formData.get('email'),
+        phone: formData.get('phone')
+      };
+      
+      submitBtn.querySelector('span').innerText = 'Submitting...';
+      spinner.style.display = 'inline-block';
+      submitBtn.disabled = true;
+      
+      fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+      .then(() => {
+        spinner.style.display = 'none';
+        submitBtn.style.display = 'none';
+        successMsg.style.display = 'block';
+        
+        setTimeout(() => {
+          modal.classList.remove('active');
+          form.reset();
+          submitBtn.style.display = 'flex';
+          submitBtn.querySelector('span').innerText = 'Submit & Register';
+          submitBtn.disabled = false;
+          successMsg.style.display = 'none';
+        }, 3000);
+      })
+      .catch(err => {
+        console.error('Error submitting form:', err);
+        spinner.style.display = 'none';
+        submitBtn.querySelector('span').innerText = 'Submit & Register';
+        submitBtn.disabled = false;
+        alert("An error occurred. Please try again.");
+      });
+    });
+
+    // --- Countdown Timer Logic ---
+    const countDownDate = new Date("Aug 27, 2026 09:00:00").getTime();
+    const daysEl = document.getElementById("days");
+    const hoursEl = document.getElementById("hours");
+    const minutesEl = document.getElementById("minutes");
+    const secondsEl = document.getElementById("seconds");
+
+    if (daysEl && hoursEl && minutesEl && secondsEl) {
+      const timer = setInterval(function() {
+        const now = new Date().getTime();
+        const distance = countDownDate - now;
+
+        if (distance < 0) {
+          clearInterval(timer);
+          return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        daysEl.innerText = days.toString().padStart(2, '0');
+        hoursEl.innerText = hours.toString().padStart(2, '0');
+        minutesEl.innerText = minutes.toString().padStart(2, '0');
+        secondsEl.innerText = seconds.toString().padStart(2, '0');
+      }, 1000);
+    }
+  </script>
+</body>
+</html>

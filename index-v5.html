@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Protect Your Savings - Cyber Security Masterclass</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body class="bg-dark text-white">
+
+  <!-- Floating Sticky CTA -->
+  <div class="sticky-cta py-3 border-top border-secondary" id="stickyCta" style="background: rgba(15,15,15,0.95); backdrop-filter: blur(10px);">
+    <div class="container d-flex justify-content-between align-items-center">
+      <div>
+        <p class="m-0 fw-bold fs-5">Reserve My Seat</p>
+        <small class="text-netflix-red">Seats filling fast</small>
+      </div>
+      <button class="btn-netflix open-register-modal px-4 py-2">Reserve Now - ₹1,799</button>
+    </div>
+  </div>
+
+  <!-- HERO SECTION -->
+  <section class="hero-section text-center position-relative pt-5 pb-5" style="min-height: 100vh; display: flex; align-items: center; justify-content: center; background: url('img/banner-bg-02.png') center/cover;">
+    <div class="hero-overlay"></div>
+    
+    <div class="container hero-content">
+      <img src="img/cyber-shield-logo.jpg" alt="Logo" class="reveal mx-auto d-block mb-4" style="max-height: 80px; border-radius: 8px;">
+      
+      <h1 class="hero-headline reveal reveal-delay-1 mb-3">
+        Could You Stop This Scam Before It Stole <span class="text-netflix-red">₹2.84 Lakhs?</span>
+      </h1>
+
+      <p class="hero-subheadline reveal reveal-delay-2 mx-auto mb-4" style="max-width: 800px; font-size: 1.25rem;">
+        Imagine this happening tomorrow morning: You receive a WhatsApp message from your bank. Everything looks genuine. You click the link. Five minutes later, your account is emptied.
+      </p>
+
+      <div class="reveal reveal-delay-3 p-4 mx-auto mb-5 rounded" style="background: rgba(229, 9, 20, 0.1); border-left: 4px solid var(--netflix-red); max-width: 800px;">
+        <p class="fs-5 m-0 fw-bold text-white">
+          The good news? Every scam you're about to see follows predictable patterns. Once you know what to look for, you'll spot them before they succeed.
+        </p>
+      </div>
+      
+      <!-- Trainer Credibility (Compact) -->
+      <div class="reveal reveal-delay-4 d-flex flex-wrap justify-content-center align-items-center gap-4 mb-5">
+        <div class="d-flex align-items-center gap-3 text-start">
+          <img src="img/expert-photo.png" alt="Nobby K. Sudharsan" class="rounded-circle" style="width: 80px; height: 80px; object-fit: cover; border: 2px solid var(--netflix-red);">
+          <div>
+            <h5 class="m-0 text-white">Nobby K. Sudharsan</h5>
+            <small class="text-muted">Chief Cyber Security Consultant</small>
+          </div>
+        </div>
+        <div class="vr bg-secondary d-none d-md-block" style="width: 2px;"></div>
+        <div class="text-start">
+          <div class="fw-bold fs-5 text-white"><i class="fas fa-briefcase text-netflix-red me-2"></i>25+ Years Experience</div>
+        </div>
+        <div class="vr bg-secondary d-none d-md-block" style="width: 2px;"></div>
+        <div class="text-start">
+          <div class="fw-bold fs-5 text-white"><i class="fas fa-users text-netflix-red me-2"></i>3,000+ Trained</div>
+        </div>
+        <div class="vr bg-secondary d-none d-md-block" style="width: 2px;"></div>
+        <div class="text-start">
+          <div class="fw-bold fs-5 text-white"><i class="fas fa-shield-alt text-netflix-red me-2"></i>Certified Ethical Hacker</div>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-5">
+        <button class="btn-netflix open-register-modal px-5 py-3 fs-4 mb-3">Reserve My Seat</button>
+        <p class="text-muted small m-0"><i class="fas fa-lock me-1"></i> Secure Registration | GST Included | Limited to 100 Participants</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE SCAM QUIZ -->
+  <section class="py-5" style="background: var(--charcoal);">
+    <div class="container py-5 text-center">
+      <h2 class="section-title reveal mb-5">Which of these SMS messages is <span class="text-netflix-red">fake?</span></h2>
+      
+      <div class="row g-4 justify-content-center reveal reveal-delay-1">
+        <div class="col-md-5">
+          <div class="quiz-card p-4 rounded bg-dark border border-secondary" style="cursor: pointer;" onclick="checkAnswer('wrong')">
+            <div class="d-flex align-items-center mb-3">
+              <i class="fas fa-comment-sms text-success fs-3 me-3"></i>
+              <div class="text-start">
+                <small class="text-muted">HDFC Bank</small><br>
+                <strong class="text-white">Yesterday 14:22</strong>
+              </div>
+            </div>
+            <p class="text-start mb-0 text-light">Dear Cust, Your HDFC Netbanking will be blocked today. Pls update PAN card here: https://hdfc-update-kyc.in/pan</p>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="quiz-card p-4 rounded bg-dark border border-secondary" style="cursor: pointer;" onclick="checkAnswer('right')">
+            <div class="d-flex align-items-center mb-3">
+              <i class="fas fa-comment-sms text-success fs-3 me-3"></i>
+              <div class="text-start">
+                <small class="text-muted">AX-HDFCBK</small><br>
+                <strong class="text-white">Today 09:15</strong>
+              </div>
+            </div>
+            <p class="text-start mb-0 text-light">Rs 1,499.00 debited from a/c **4829 on 12-05-24 to SWIGGY. Not you? Call 18002026161 or SMS BLOCK 4829 to 5676712</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="quizResult" class="mt-5 text-center" style="display: none;">
+        <h3 id="quizMessage" class="mb-3"></h3>
+        <div class="p-4 mx-auto bg-dark border border-netflix-red rounded text-start" style="max-width: 700px;">
+          <p class="fs-5 mb-0"><span class="text-netflix-red fw-bold">Most people choose the wrong one.</span> During the workshop you'll learn three simple checks that reveal fake messages in under 10 seconds.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIVE DEMONSTRATIONS -->
+  <section class="py-5 bg-dark border-top border-secondary">
+    <div class="container py-5">
+      <div class="text-center mb-5 reveal">
+        <h2 class="section-title">Experience <span class="text-netflix-red">Live Cyber Attack</span> Demonstrations</h2>
+        <p class="fs-5 text-muted max-w-700 mx-auto">This isn't a boring PowerPoint lecture. Watch exactly how criminals execute attacks in real-time, so you know exactly what to look for.</p>
+      </div>
+      <div class="row g-4">
+        <!-- Demo 1 -->
+        <div class="col-md-4 reveal reveal-delay-1">
+          <div class="card h-100 bg-transparent border-secondary text-white">
+            <div class="card-body text-center p-4">
+              <div class="bg-charcoal rounded-circle d-inline-flex justify-content-center align-items-center mb-4" style="width: 80px; height: 80px; border: 1px solid var(--netflix-red);">
+                <i class="fas fa-qrcode fs-2 text-netflix-red"></i>
+              </div>
+              <h4 class="mb-3">The QR Code Trap</h4>
+              <p class="text-muted">See how scanning a simple QR code at a restaurant can give a criminal full control over your smartphone.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Demo 2 -->
+        <div class="col-md-4 reveal reveal-delay-2">
+          <div class="card h-100 bg-transparent border-secondary text-white">
+            <div class="card-body text-center p-4">
+              <div class="bg-charcoal rounded-circle d-inline-flex justify-content-center align-items-center mb-4" style="width: 80px; height: 80px; border: 1px solid var(--netflix-red);">
+                <i class="fas fa-microphone-alt fs-2 text-netflix-red"></i>
+              </div>
+              <h4 class="mb-3">AI Voice Cloning</h4>
+              <p class="text-muted">Hear how criminals clone the voices of your loved ones using just a 3-second WhatsApp audio clip.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Demo 3 -->
+        <div class="col-md-4 reveal reveal-delay-3">
+          <div class="card h-100 bg-transparent border-secondary text-white">
+            <div class="card-body text-center p-4">
+              <div class="bg-charcoal rounded-circle d-inline-flex justify-content-center align-items-center mb-4" style="width: 80px; height: 80px; border: 1px solid var(--netflix-red);">
+                <i class="fas fa-wifi fs-2 text-netflix-red"></i>
+              </div>
+              <h4 class="mb-3">The Wi-Fi Hijack</h4>
+              <p class="text-muted">Watch a live demonstration of data being intercepted on a "Free Public Wi-Fi" network.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-5 reveal">
+         <button class="btn-netflix open-register-modal px-5 py-3 fs-5">Protect Your Family Before It's Too Late</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- BRING YOUR OWN PHONE (HANDS-ON) -->
+  <section class="py-5" style="background: url('img/scam-virus-spyware-malware-antivirus-concept.jpg') center/cover; position: relative;">
+    <div style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.8) 100%);"></div>
+    <div class="container py-5 position-relative z-1">
+      <div class="row align-items-center">
+        <div class="col-lg-6 mb-4 mb-lg-0 reveal">
+          <h2 class="section-title mb-4">📱 Bring Your Own Smartphone</h2>
+          <p class="fs-5 text-light mb-4">This isn't just theory. You will leave this workshop with a more secure device than you arrived with.</p>
+          <ul class="list-unstyled">
+            <li class="mb-3 fs-5"><i class="fas fa-check-circle text-netflix-red me-3"></i>Enable hidden security settings</li>
+            <li class="mb-3 fs-5"><i class="fas fa-check-circle text-netflix-red me-3"></i>Configure unbreakable 2-factor authentication</li>
+            <li class="mb-3 fs-5"><i class="fas fa-check-circle text-netflix-red me-3"></i>Secure your WhatsApp against account hijacking</li>
+            <li class="mb-3 fs-5"><i class="fas fa-check-circle text-netflix-red me-3"></i>Review and lock down banking app permissions</li>
+            <li class="mb-3 fs-5"><i class="fas fa-check-circle text-netflix-red me-3"></i>Fortify your Google & Email accounts</li>
+          </ul>
+        </div>
+        <div class="col-lg-5 offset-lg-1 reveal reveal-delay-1 text-center">
+          <div class="p-5 bg-charcoal border border-secondary rounded shadow-lg">
+             <i class="fas fa-mobile-alt text-white mb-3" style="font-size: 5rem;"></i>
+             <h3 class="text-white mb-3">Hands-on Security</h3>
+             <p class="text-muted m-0">We will guide you step-by-step through securing your personal devices during the session.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO SHOULD ATTEND -->
+  <section class="py-5 bg-dark">
+    <div class="container py-5 text-center">
+      <h2 class="section-title reveal mb-5">Who Should <span class="text-netflix-red">Attend?</span></h2>
+      <p class="fs-4 text-white fw-light reveal mb-5">If you use UPI, WhatsApp, email or online banking, you're already a target.</p>
+      
+      <div class="d-flex flex-wrap justify-content-center gap-3 reveal reveal-delay-1">
+        <span class="badge bg-charcoal border border-secondary p-3 fs-5">Business Owners</span>
+        <span class="badge bg-charcoal border border-secondary p-3 fs-5">Employees & Professionals</span>
+        <span class="badge bg-charcoal border border-secondary p-3 fs-5">Doctors & Healthcare</span>
+        <span class="badge bg-charcoal border border-secondary p-3 fs-5">Chartered Accountants</span>
+        <span class="badge bg-charcoal border border-secondary p-3 fs-5">Teachers & Educators</span>
+        <span class="badge bg-charcoal border border-secondary p-3 fs-5">Students</span>
+        <span class="badge bg-charcoal border border-secondary p-3 fs-5">Parents</span>
+        <span class="badge bg-charcoal border border-secondary p-3 fs-5">Senior Citizens</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOCIAL PROOF -->
+  <section class="py-5 border-top border-secondary" style="background: var(--charcoal);">
+    <div class="container py-5 text-center">
+      <h2 class="section-title reveal mb-5">Trusted by <span class="text-netflix-red">Thousands</span></h2>
+      
+      <div class="row g-4 justify-content-center">
+        <!-- Placeholder for Attendee Photo -->
+        <div class="col-md-8 reveal reveal-delay-1">
+          <div class="proof-item rounded shadow-lg" style="background: url('img/work-net.jpg') center/cover; position: relative; min-height: 350px; border: 1px solid #333;">
+          </div>
+        </div>
+      </div>
+        
+      <!-- Corporate Logos -->
+      <div class="mt-5 pt-4 reveal">
+        <p class="text-muted text-uppercase fw-bold mb-4">Attendees from organizations like</p>
+        <div class="d-flex flex-wrap justify-content-center align-items-center gap-4 opacity-75">
+           <img src="img/wsa-01.png" alt="Logo 1" style="max-height: 50px;">
+           <img src="img/wsa-02.png" alt="Logo 2" style="max-height: 50px;">
+           <img src="img/wsa-03.png" alt="Logo 3" style="max-height: 50px;">
+           <img src="img/wsa-04.png" alt="Logo 4" style="max-height: 50px;">
+           <img src="img/wsa-05.png" alt="Logo 5" style="max-height: 50px;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE SECTION -->
+  <section class="py-5 bg-dark">
+    <div class="container py-5">
+      <h2 class="section-title text-center reveal mb-5">Workshop <span class="text-netflix-red">Timeline</span></h2>
+      
+      <div class="row justify-content-center reveal reveal-delay-1">
+        <div class="col-lg-8">
+          <div class="timeline position-relative">
+             <div class="timeline-line bg-secondary position-absolute" style="left: 20px; top: 0; bottom: 0; width: 2px;"></div>
+             
+             <!-- Item 1 -->
+             <div class="timeline-item position-relative mb-4" style="padding-left: 50px;">
+               <div class="timeline-dot position-absolute bg-netflix-red rounded-circle" style="left: 14px; top: 5px; width: 14px; height: 14px; box-shadow: 0 0 10px var(--netflix-red);"></div>
+               <h4 class="text-white m-0">09:00 - The Threat Landscape</h4>
+               <p class="text-muted">Introduction to the latest cyber threats and how criminals target professionals in India.</p>
+             </div>
+             <!-- Item 2 -->
+             <div class="timeline-item position-relative mb-4" style="padding-left: 50px;">
+               <div class="timeline-dot position-absolute bg-netflix-red rounded-circle" style="left: 14px; top: 5px; width: 14px; height: 14px; box-shadow: 0 0 10px var(--netflix-red);"></div>
+               <h4 class="text-white m-0">09:30 - Live Attack Demonstrations</h4>
+               <p class="text-muted">Live hacking demos: QR code scams, phishing SMS, and AI Voice Cloning.</p>
+             </div>
+             <!-- Item 3 -->
+             <div class="timeline-item position-relative mb-4" style="padding-left: 50px;">
+               <div class="timeline-dot position-absolute bg-netflix-red rounded-circle" style="left: 14px; top: 5px; width: 14px; height: 14px; box-shadow: 0 0 10px var(--netflix-red);"></div>
+               <h4 class="text-white m-0">10:00 - Mobile Security (Hands-On)</h4>
+               <p class="text-muted">Bring your phone. Step-by-step guidance on securing your smartphone and WhatsApp.</p>
+             </div>
+             <!-- Item 4 -->
+             <div class="timeline-item position-relative mb-4" style="padding-left: 50px;">
+               <div class="timeline-dot position-absolute bg-charcoal rounded-circle border border-secondary" style="left: 14px; top: 5px; width: 14px; height: 14px;"></div>
+               <h4 class="text-muted m-0">10:45 - Break</h4>
+             </div>
+             <!-- Item 5 -->
+             <div class="timeline-item position-relative mb-4" style="padding-left: 50px;">
+               <div class="timeline-dot position-absolute bg-netflix-red rounded-circle" style="left: 14px; top: 5px; width: 14px; height: 14px; box-shadow: 0 0 10px var(--netflix-red);"></div>
+               <h4 class="text-white m-0">11:00 - Protect Banking & Email</h4>
+               <p class="text-muted">Advanced protection for net banking, UPI, and securing your primary email address.</p>
+             </div>
+             <!-- Item 6 -->
+             <div class="timeline-item position-relative mb-4" style="padding-left: 50px;">
+               <div class="timeline-dot position-absolute bg-netflix-red rounded-circle" style="left: 14px; top: 5px; width: 14px; height: 14px; box-shadow: 0 0 10px var(--netflix-red);"></div>
+               <h4 class="text-white m-0">11:40 - Q&A Session</h4>
+               <p class="text-muted">Get your specific security questions answered directly by the expert.</p>
+             </div>
+             <!-- Item 7 -->
+             <div class="timeline-item position-relative" style="padding-left: 50px;">
+               <div class="timeline-dot position-absolute bg-netflix-red rounded-circle" style="left: 14px; top: 5px; width: 14px; height: 14px; box-shadow: 0 0 10px var(--netflix-red);"></div>
+               <h4 class="text-white m-0">12:00 - Certification</h4>
+               <p class="text-muted">Closing notes and distribution of certificates.</p>
+             </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING & THE REAL COST -->
+  <section class="py-5 border-top border-secondary" style="background: var(--charcoal);" id="register">
+    <div class="container py-5">
+      <div class="row align-items-center">
+        <div class="col-lg-6 mb-5 mb-lg-0 reveal">
+          <h2 class="section-title mb-4">The <span class="text-netflix-red">Real Cost</span> of Ignorance</h2>
+          
+          <div class="d-flex justify-content-between border-bottom border-secondary pb-3 mb-3 text-muted">
+            <span class="fs-5">Average cost of a single QR Code Scam</span>
+            <span class="fs-5 fw-bold text-white">₹50,000 - ₹2,00,000+</span>
+          </div>
+          <div class="d-flex justify-content-between border-bottom border-secondary pb-3 mb-3 text-muted">
+            <span class="fs-5">Average cost of a Phishing Attack</span>
+            <span class="fs-5 fw-bold text-white">Weeks of Recovery</span>
+          </div>
+          <div class="d-flex justify-content-between pb-3 mb-4 text-netflix-red">
+            <span class="fs-4 fw-bold">Cost of this Workshop</span>
+            <span class="fs-4 fw-bold">₹1,799</span>
+          </div>
+          
+          <p class="fs-5 text-light">That's less than the cost of replacing a stolen smartphone—and far less than recovering from a cyber scam.</p>
+        </div>
+        
+        <div class="col-lg-5 offset-lg-1 reveal reveal-delay-1">
+          <div class="p-5 rounded bg-dark border border-secondary text-center shadow-lg position-relative overflow-hidden">
+            <div class="position-absolute top-0 end-0 bg-netflix-red text-white px-3 py-1 rounded-bl fw-bold">Limited Seats</div>
+            <h3 class="mb-3 text-white">Secure Your Spot</h3>
+            
+            <div class="mb-4">
+               <span class="text-decoration-line-through text-muted fs-4">Regular Fee: ₹2,999</span><br>
+               <span class="display-4 fw-bold text-white">₹1,799</span><br>
+               <span class="badge bg-success fs-6 mt-2">Save ₹1,200 Today</span>
+            </div>
+            
+            <button class="btn-netflix w-100 py-3 fs-5 open-register-modal mb-3">Reserve My Seat</button>
+            
+            <div class="d-flex flex-column gap-2 text-muted small text-start">
+              <span><i class="fas fa-lock text-success me-2"></i>Secure Registration</span>
+              <span><i class="fas fa-file-invoice text-success me-2"></i>GST Included</span>
+              <span><i class="fas fa-users text-success me-2"></i>Limited to 100 participants</span>
+              <span><i class="fas fa-envelope text-success me-2"></i>Confirmation by Email and SMS</span>
+              <span><i class="fas fa-certificate text-success me-2"></i>Certificate Included</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REGISTRATION MODAL -->
+  <div class="modal-overlay" id="registerModal" style="background: rgba(0,0,0,0.85); z-index: 99999 !important;">
+    <div class="modal-content" style="background: var(--charcoal); border: 1px solid var(--netflix-red);">
+      <button class="modal-close text-white" id="closeModal">&times;</button>
+      <h3 class="text-white mb-1">Reserve My Seat</h3>
+      <p class="text-muted mb-4">Complete your registration to secure your spot.</p>
+      
+      <form id="registrationForm" onsubmit="submitForm(event)">
+        <div class="mb-3">
+          <label class="form-label text-light">Full Name</label>
+          <input type="text" class="form-control bg-dark text-white border-secondary" id="name" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label text-light">Email Address</label>
+          <input type="email" class="form-control bg-dark text-white border-secondary" id="email" required>
+        </div>
+        <div class="mb-4">
+          <label class="form-label text-light">WhatsApp Number</label>
+          <input type="tel" class="form-control bg-dark text-white border-secondary" id="phone" required>
+        </div>
+        <button type="submit" class="btn-netflix w-100 py-3 fs-5" id="submitBtn">Proceed to Payment - ₹1,799</button>
+      </form>
+    </div>
+  </div>
+
+  <footer class="py-4 bg-dark text-center border-top border-secondary">
+    <div class="container">
+      <img src="img/cyber-shield-logo.jpg" alt="Logo" style="max-height: 40px;" class="mb-3">
+      <p class="text-muted small m-0">&copy; 2026 Cyber Shield Foundation. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+    // Reveal Animations
+    function reveal() {
+      var reveals = document.querySelectorAll(".reveal");
+      for (var i = 0; i < reveals.length; i++) {
+        var windowHeight = window.innerHeight;
+        var elementTop = reveals[i].getBoundingClientRect().top;
+        var elementVisible = 50;
+        if (elementTop < windowHeight - elementVisible) {
+          reveals[i].classList.add("active");
+        }
+      }
+    }
+    window.addEventListener("scroll", reveal);
+    reveal();
+
+    // Sticky CTA Logic
+    const stickyCta = document.getElementById('stickyCta');
+    const registerSection = document.getElementById('register');
+    
+    window.addEventListener('scroll', () => {
+      if (window.innerWidth < 768) {
+        const regRect = registerSection.getBoundingClientRect();
+        if (window.scrollY > 300 && regRect.top > window.innerHeight) {
+          stickyCta.classList.add('visible');
+        } else {
+          stickyCta.classList.remove('visible');
+        }
+      }
+    });
+
+    // Modal Logic
+    const modal = document.getElementById('registerModal');
+    const closeModalBtn = document.getElementById('closeModal');
+    const openBtns = document.querySelectorAll('.open-register-modal');
+
+    openBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        modal.classList.add('active');
+      });
+    });
+
+    closeModalBtn.addEventListener('click', () => {
+      modal.classList.remove('active');
+    });
+
+    window.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('active');
+      }
+    });
+
+    // Form Submission
+    function submitForm(e) {
+      e.preventDefault();
+      const btn = document.getElementById('submitBtn');
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+      btn.disabled = true;
+      
+      // Simulate API call
+      setTimeout(() => {
+        btn.innerHTML = 'Redirecting to payment...';
+        btn.classList.add('bg-success');
+        btn.style.borderColor = '#198754';
+      }, 1500);
+    }
+
+    // Quiz Logic
+    function checkAnswer(answer) {
+      const resultDiv = document.getElementById('quizResult');
+      const msgH3 = document.getElementById('quizMessage');
+      
+      if (answer === 'wrong') {
+        msgH3.innerHTML = '<i class="fas fa-times-circle text-netflix-red me-2"></i> That message was real.';
+      } else {
+        msgH3.innerHTML = '<i class="fas fa-check-circle text-success me-2"></i> Correct. The second message was fake.';
+      }
+      
+      resultDiv.style.display = 'block';
+    }
+  </script>
+</body>
+</html>

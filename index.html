@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Protect Your Savings - Cyber Security Masterclass</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <style>
+    .countdown-box {
+      background: var(--charcoal);
+      border: 1px solid var(--netflix-red);
+      border-radius: 8px;
+      padding: 10px 15px;
+      display: inline-block;
+      text-align: center;
+      min-width: 60px;
+    }
+    .countdown-val {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1;
+    }
+    .countdown-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(15,15,15,0.95) 0%, rgba(15,15,15,0.7) 50%, rgba(15,15,15,0.85) 100%);
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+  </style>
+</head>
+<body class="bg-dark text-white" data-bs-theme="dark">
+
+  <!-- Floating Sticky CTA (Mobile Bottom) -->
+  <div class="sticky-cta py-3 border-top border-secondary d-md-none" id="stickyCtaMobile" style="background: rgba(15,15,15,0.95); backdrop-filter: blur(10px);">
+    <div class="container d-flex justify-content-between align-items-center">
+      <div>
+        <p class="m-0 fw-bold fs-5 text-white">Reserve My Seat</p>
+        <small class="text-white" id="stickyCountdownMobile">Ends in: 03:14:22:15</small>
+      </div>
+      <button class="btn-netflix open-register-modal px-4 py-2">₹1,799</button>
+    </div>
+  </div>
+
+  <!-- Floating Sticky CTA (Desktop Top Right) -->
+  <div class="position-fixed d-none d-md-flex flex-column align-items-end" id="stickyCtaDesktop" style="top: 20px; right: 20px; z-index: 1000; opacity: 0; transition: opacity 0.3s ease; pointer-events: none;">
+    <button class="btn-netflix open-register-modal px-4 py-2 shadow-lg mb-1" style="pointer-events: auto;">Reserve My Seat - ₹1,799</button>
+    <small class="text-white bg-dark px-2 py-1 rounded" style="pointer-events: auto; opacity: 0.8;" id="stickyCountdownDesktop">Ends in: 03:14:22:15</small>
+  </div>
+
+  <!-- HERO SECTION -->
+  <section class="hero-section text-center position-relative pt-5 pb-5" style="min-height: 100vh; display: flex; align-items: center; justify-content: center; background: url('img/cafe_bg.jpg') center/cover;">
+    <div class="hero-overlay"></div>
+    
+    <div class="container hero-content">
+      <!-- Logos -->
+      <div class="d-flex justify-content-center align-items-center mb-5 reveal">
+        <img src="img/logo-white.png" alt="Exabeam" style="height: 50px; object-fit: contain;">
+      </div>
+
+      <!-- Hero Content -->
+      <h1 class="hero-headline reveal mb-5 mt-4" style="font-size: 3.5rem; line-height: 1.2;">
+        Protect Your Phone, Bank Accounts<br>& Digital Life in Just <span class="text-netflix-red">3 Hours</span>
+      </h1>
+
+      <p class="hero-subheadline reveal reveal-delay-1 mx-auto mb-4 text-white" style="max-width: 700px; font-size: 1.5rem; line-height: 1.4;">
+        One fake message.<br>One click.<br>One expensive mistake.<br><br>
+        Learn how cyber criminals fool ordinary people—and how to stop them.
+      </p>
+
+      <p class="reveal reveal-delay-1 mx-auto mb-5 text-muted" style="max-width: 700px; font-size: 1.1rem;">
+        Learn the simple techniques cyber criminals hope you never discover.<br>Practical demonstrations. No technical background required.
+      </p>
+
+      <div class="reveal reveal-delay-2 mb-5">
+        <button class="btn-netflix open-register-modal px-5 py-3 fs-4 mb-3" style="min-width: 280px;">Reserve My Seat</button>
+        <p class="text-white fw-bold mb-0" style="letter-spacing: 1px;">★★★★★ Trusted by 3,000+ professionals</p>
+      </div>
+
+      <div class="reveal reveal-delay-3 d-flex flex-wrap justify-content-center gap-3 text-muted mb-5 fs-6">
+        <span>27 Oct</span>
+        <span>•</span>
+        <span>Crowne Plaza</span>
+        <span>•</span>
+        <span>Kochi</span>
+        <span>•</span>
+        <span>Malayalam & English</span>
+      </div>
+      
+      <div class="reveal reveal-delay-4 mt-3">
+         <p class="text-muted small text-uppercase fw-bold mb-2">Early Bird Ends In</p>
+         <div class="d-flex justify-content-center gap-3 align-items-center" id="heroTimer">
+            <div class="text-white fw-bold fs-5"><span id="days">02</span><span class="text-muted ms-1 fs-6 fw-normal">d</span></div>
+            <div class="text-muted">:</div>
+            <div class="text-white fw-bold fs-5"><span id="hours">14</span><span class="text-muted ms-1 fs-6 fw-normal">h</span></div>
+            <div class="text-muted">:</div>
+            <div class="text-white fw-bold fs-5"><span id="mins">53</span><span class="text-muted ms-1 fs-6 fw-normal">m</span></div>
+            <div class="text-muted">:</div>
+            <div class="text-white fw-bold fs-5"><span id="secs">22</span><span class="text-muted ms-1 fs-6 fw-normal">s</span></div>
+         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HIDDEN OBJECTIONS / WHAT MAKES THIS DIFFERENT -->
+  <section class="py-4 bg-charcoal border-top border-bottom border-secondary text-center">
+    <div class="container reveal">
+      <p class="text-muted text-uppercase fw-bold mb-3">What makes this different?</p>
+      <div class="d-flex flex-wrap justify-content-center gap-4">
+        <div class="fs-5"><i class="fas fa-ban text-netflix-red me-2"></i>No Coding Required</div>
+        <div class="fs-5"><i class="fas fa-ban text-netflix-red me-2"></i>No Technical Background Needed</div>
+        <div class="fs-5"><i class="fas fa-laptop-code text-success me-2"></i>Live Demonstrations</div>
+        <div class="fs-5"><i class="fas fa-shield-alt text-success me-2"></i>Real-World Scenarios</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE SCAM QUIZ -->
+  <section class="py-5 bg-dark border-top border-secondary">
+    <div class="container py-5 text-center">
+      <h2 class="section-title reveal mb-4">Would YOU Click This?</h2>
+      <p class="text-muted reveal reveal-delay-1 mb-5 fs-5">Tap the message to see what happens next.</p>
+      
+      <div class="imessage-container reveal reveal-delay-2" id="imessageQuiz" onclick="revealImessage()">
+        <div class="imessage-header">
+          <i class="fas fa-university fs-3 mb-2 d-block"></i>
+          <h6>Bank Support</h6>
+        </div>
+        <div class="imessage-timestamp">Today 14:22</div>
+        
+        <div class="imessage-bubble receiver shake-animation">
+          Dear Customer, Your Netbanking will be blocked today due to incomplete KYC. Please click here to update your PAN immediately: https://bank-kyc-update.in/pan
+        </div>
+        
+        <div class="imessage-overlay" id="imessageOverlay">
+          <h3 class="text-netflix-red mb-3 fw-bold"><i class="fas fa-times-circle me-2"></i>It's a Trap!</h3>
+          <p class="text-white mb-4">This looks real, but the link leads to a clone site that steals your password. You'll learn to spot these in under 10 seconds.</p>
+          <button class="btn btn-outline-light mt-2 px-4 py-2" onclick="event.stopPropagation(); closeImessage()">Got it</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BEFORE VS AFTER TRANSFORMATION -->
+  <section class="py-5 bg-dark">
+    <div class="container py-5">
+      <div class="text-center mb-5 reveal">
+        <h2 class="section-title">The Difference This Program Makes</h2>
+        <p class="fs-5 text-muted max-w-700 mx-auto">See how your security posture changes in just one day.</p>
+      </div>
+      <div class="row g-4 justify-content-center">
+        <div class="col-md-5 reveal reveal-delay-1">
+          <div class="saas-card text-center" style="border-top: 4px solid #888;">
+            <div class="mb-4">
+              <span class="badge bg-secondary px-3 py-2 fs-6">Before Program</span>
+            </div>
+            <ul class="text-start list-unstyled fs-5 text-muted">
+              <li class="mb-3"><i class="fas fa-times text-secondary me-3"></i>I click every WhatsApp link.</li>
+              <li class="mb-3"><i class="fas fa-times text-secondary me-3"></i>I reuse passwords.</li>
+              <li class="mb-3"><i class="fas fa-times text-secondary me-3"></i>I don't know if QR codes are safe.</li>
+              <li class="mb-3"><i class="fas fa-times text-secondary me-3"></i>I hope I never get scammed.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-5 reveal reveal-delay-2">
+          <div class="saas-card text-center" style="border-top: 4px solid #00f2fe;">
+            <div class="mb-4">
+              <span class="badge px-3 py-2 fs-6 fw-bold" style="background: #00f2fe; color: #000;">After Program</span>
+            </div>
+            <ul class="text-start list-unstyled fs-5 text-white">
+              <li class="mb-3"><i class="fas fa-check text-success me-3"></i>I know what to trust.</li>
+              <li class="mb-3"><i class="fas fa-check text-success me-3"></i>My banking apps are safer.</li>
+              <li class="mb-3"><i class="fas fa-check text-success me-3"></i>My phone is properly configured.</li>
+              <li class="mb-3"><i class="fas fa-check text-success me-3"></i>I can spot scams before they succeed.</li>
+              <li class="mb-3"><i class="fas fa-check text-success me-3"></i>I can help protect my family too.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIVE DEMONSTRATIONS -->
+  <section class="py-5 border-top border-secondary bg-dark">
+    <div class="container py-5">
+      <div class="text-center mb-5 reveal">
+        <h2 class="section-title">See How These Scams <span class="text-white">Actually Work</span></h2>
+        <p class="fs-5 text-muted max-w-700 mx-auto">During the program you'll watch real demonstrations of the scams affecting ordinary people today—including fake QR codes, phishing messages, AI voice scams and public Wi-Fi attacks.</p>
+      </div>
+      <div class="row g-4">
+        <!-- Threat 1 -->
+        <div class="col-md-4 reveal reveal-delay-1">
+          <div class="saas-card text-center h-100 p-4 rounded">
+            <i class="fas fa-qrcode fs-1 text-white mb-3"></i>
+            <h4 class="mb-3 text-white">QR Code Trap</h4>
+            <div class="text-start text-muted">
+              <p class="mb-2"><strong>Duration:</strong> 5 minutes</p>
+              <p class="mb-2"><strong>Watch:</strong> How scammers trick people with fake QR codes at restaurants and petrol pumps.</p>
+              <p class="mb-0"><strong>Learn:</strong> How to verify QR payments before confirming transactions.</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Threat 2 -->
+        <div class="col-md-4 reveal reveal-delay-2">
+          <div class="saas-card text-center h-100 p-4 rounded">
+            <i class="fas fa-sms fs-1 text-white mb-3"></i>
+            <h4 class="mb-3 text-white">SMS Phishing</h4>
+            <div class="text-start text-muted">
+              <p class="mb-2"><strong>Duration:</strong> 10 minutes</p>
+              <p class="mb-2"><strong>Watch:</strong> A live demonstration of how convincing a fake banking SMS can look.</p>
+              <p class="mb-0"><strong>Learn:</strong> The exact psychological triggers scammers use and how to spot them.</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Threat 3 -->
+        <div class="col-md-4 reveal reveal-delay-3">
+          <div class="saas-card text-center h-100 p-4 rounded">
+            <i class="fas fa-microphone fs-1 text-white mb-3"></i>
+            <h4 class="mb-3 text-white">AI Voice Cloning</h4>
+            <div class="text-start text-muted">
+              <p class="mb-2"><strong>Duration:</strong> 10 minutes</p>
+              <p class="mb-2"><strong>Watch:</strong> We will clone a voice live to show you how easy it is to impersonate your family members.</p>
+              <p class="mb-0"><strong>Learn:</strong> How to establish a "safe word" protocol with your family to verify identity.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-5 reveal p-5 saas-card mx-auto" style="max-width: 800px; border-color: rgba(255,255,255,0.2);">
+         <h3 class="text-white mb-3">Don't Wait Until You Become a Statistic</h3>
+         <p class="text-muted mb-4 fs-5">Secure your digital life and protect your family in just one day.</p>
+         <button class="btn-netflix open-register-modal px-5 py-3 fs-4">Reserve My Seat - ₹1,799</button>
+         <p class="mt-3 text-muted small mb-0"><i class="fas fa-lock text-success me-1"></i> Secure checkout</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEET YOUR TRAINER -->
+  <section class="py-4 border-top border-bottom border-secondary bg-dark">
+    <div class="container py-3 text-center reveal">
+      <div class="d-inline-flex flex-column flex-md-row align-items-center justify-content-center gap-4">
+        <img src="img/person-01.png" alt="Nobby K. Sudharsan" class="rounded-circle shadow-lg" style="width: 80px; height: 80px; object-fit: cover;">
+        <div class="text-center text-md-start" style="max-width: 600px;">
+          <h4 class="text-white mb-2">NOBBY K SUDHARSAN</h4>
+          <p class="text-muted mb-2 fs-6 fw-bold text-uppercase" style="letter-spacing: 1px;">Trainer, Cyber Shield Foundation</p>
+          <p class="text-secondary mb-0 fs-6">Cyber Security Trainer &bull; Ethical Hacking Consultant &bull; AI & Digital Safety Expert</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BRING YOUR OWN PHONE (HANDS-ON) -->
+  <section class="py-5 bg-dark" style="background: url('img/scam-virus-spyware-malware-antivirus-concept.jpg') center/cover; position: relative;">
+    <div style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.8) 100%);"></div>
+    <div class="container py-5 position-relative z-1">
+      <div class="row align-items-center">
+        <div class="col-lg-7 mb-4 mb-lg-0 reveal">
+          <div class="d-inline-block mb-3 px-3 py-1 bg-netflix-red text-white fw-bold rounded shadow-sm text-uppercase" style="letter-spacing: 1px; font-size: 0.85rem;">Practical Security &bull; Not Just A Lecture</div>
+          <h2 class="section-title mb-4">📱 Bring Your Own Smartphone</h2>
+          <p class="fs-5 text-light mb-4">Bring your smartphone and follow along as we demonstrate practical security settings you can apply immediately.</p>
+          <ul class="list-unstyled">
+            <li class="mb-3 fs-5"><i class="fas fa-check-circle text-success me-3"></i>Enable hidden security settings</li>
+            <li class="mb-3 fs-5"><i class="fas fa-check-circle text-success me-3"></i>Configure industry-recommended 2-factor authentication</li>
+            <li class="mb-3 fs-5"><i class="fas fa-check-circle text-success me-3"></i>Secure your WhatsApp against account hijacking</li>
+            <li class="mb-3 fs-5"><i class="fas fa-check-circle text-success me-3"></i>Review and lock down banking app permissions</li>
+            <li class="mb-3 fs-5"><i class="fas fa-check-circle text-success me-3"></i>Fortify your Google & Email accounts</li>
+          </ul>
+        </div>
+        <div class="col-lg-4 offset-lg-1 reveal reveal-delay-1 text-center">
+          <div class="saas-card p-4">
+             <i class="fas fa-mobile-alt text-white fs-1 mb-3"></i>
+             <h3 class="text-white mb-3">Hands-on Security</h3>
+             <p class="text-muted m-0">We will guide you step-by-step through securing your personal devices during the session.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO SHOULD ATTEND / NOT ATTEND -->
+  <section class="py-5 bg-dark border-top border-secondary">
+    <div class="container py-5">
+      <div class="row g-5">
+        <div class="col-md-6 reveal">
+          <h3 class="mb-4 text-white">Who Should <span class="text-netflix-red">Attend?</span></h3>
+          <p class="fs-5 text-muted mb-4">If you use UPI, WhatsApp, email or online banking, you're already a target. Ideal for:</p>
+          <div class="d-flex flex-wrap gap-2 mb-4">
+            <span class="badge bg-charcoal border border-secondary p-2 fs-6">Business Owners</span>
+            <span class="badge bg-charcoal border border-secondary p-2 fs-6">Employees</span>
+            <span class="badge bg-charcoal border border-secondary p-2 fs-6">Doctors & CAs</span>
+            <span class="badge bg-charcoal border border-secondary p-2 fs-6">Teachers</span>
+            <span class="badge bg-charcoal border border-secondary p-2 fs-6">Parents & Seniors</span>
+          </div>
+        </div>
+        
+        <div class="col-md-6 reveal reveal-delay-1">
+          <h3 class="mb-4 text-white">You'll Benefit <span class="text-success">Most If...</span></h3>
+          <div class="saas-card p-4">
+            <p class="mb-3 fs-5"><i class="fas fa-check-circle text-success me-3"></i>You use UPI</p>
+            <p class="mb-3 fs-5"><i class="fas fa-check-circle text-success me-3"></i>You use WhatsApp</p>
+            <p class="mb-3 fs-5"><i class="fas fa-check-circle text-success me-3"></i>You shop online</p>
+            <p class="mb-3 fs-5"><i class="fas fa-check-circle text-success me-3"></i>You bank online</p>
+            <p class="mb-0 fs-5"><i class="fas fa-check-circle text-success me-3"></i>You use email for work</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOCIAL PROOF & TESTIMONIAL -->
+  <section class="py-5" style="background: var(--charcoal);">
+    <div class="container py-5 text-center">
+      <h2 class="section-title reveal mb-5">Over 3,000 professionals <span class="text-netflix-red">trained</span></h2>
+      <p class="fs-5 text-muted mx-auto mb-5" style="max-width: 700px;">Through our offline programs, corporate seminars, and public awareness campaigns.</p>
+      
+      <!-- Removed placeholder images, waiting for real assets -->
+      <div class="row g-4 justify-content-center mb-5">
+        <div class="col-md-5 reveal reveal-delay-1">
+          <div class="saas-card p-5 d-flex align-items-center justify-content-center border-secondary" style="min-height: 250px; background: rgba(0,0,0,0.2);">
+            <p class="text-muted fst-italic mb-0">[ Real Workshop Photo Needed ]</p>
+          </div>
+        </div>
+        <div class="col-md-5 reveal reveal-delay-2">
+          <div class="saas-card p-5 d-flex align-items-center justify-content-center border-secondary" style="min-height: 250px; background: rgba(0,0,0,0.2);">
+             <p class="text-muted fst-italic mb-0">[ Real Certificate Photo Needed ]</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Specific Testimonial -->
+      <div class="reveal mx-auto mb-5 p-4 rounded saas-card text-start position-relative" style="max-width: 800px; border-color: rgba(255,255,255,0.1);">
+        <i class="fas fa-quote-left fs-1 text-secondary position-absolute" style="top: -15px; left: 20px; opacity: 0.5;"></i>
+        <p class="fs-4 text-white fst-italic ms-4">"I changed five settings on my phone during the session that I didn't even know existed. It was worth attending for that alone."</p>
+        <p class="text-muted ms-4 m-0 fw-bold">— J. Menon, <span class="fw-normal">Business Owner</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT YOU'LL ACTUALLY DO -->
+  <section class="py-5 border-top border-secondary" style="background: rgba(255,255,255,0.02);">
+    <div class="container py-5">
+      <div class="row align-items-center">
+        <div class="col-lg-5 mb-4 mb-lg-0 reveal text-center text-lg-start">
+          <h2 class="section-title mb-4">What You'll <span class="text-white">Actually Do</span> During These 3 Hours</h2>
+          <p class="fs-5 text-muted">People buy experiences, not curricula. This is an active, practical session where you secure your devices in real time.</p>
+        </div>
+        <div class="col-lg-6 offset-lg-1 reveal reveal-delay-1">
+          <div class="saas-card p-4 border-secondary">
+            <h4 class="mb-4 text-white">During the program you will...</h4>
+            <ul class="list-unstyled mb-0 fs-5 text-muted">
+              <li class="mb-3"><i class="fas fa-check text-success me-3"></i>Secure your own smartphone</li>
+              <li class="mb-3"><i class="fas fa-check text-success me-3"></i>Enable recommended security settings</li>
+              <li class="mb-3"><i class="fas fa-check text-success me-3"></i>Review your banking app permissions</li>
+              <li class="mb-3"><i class="fas fa-check text-success me-3"></i>Practice identifying phishing attempts</li>
+              <li><i class="fas fa-check text-success me-3"></i>Ask questions about your own devices</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE SECTION -->
+  <section class="py-5 bg-dark border-top border-secondary">
+    <div class="container py-5">
+      <h2 class="section-title text-center reveal mb-5">Program <span class="text-white">Topics</span></h2>
+      
+      <div class="row justify-content-center reveal reveal-delay-1">
+        <div class="col-lg-8">
+          <div class="timeline position-relative">
+             <div class="timeline-line bg-secondary position-absolute" style="left: 20px; top: 0; bottom: 0; width: 2px;"></div>
+             
+             <!-- Topic 1 -->
+             <div class="timeline-item position-relative mb-4" style="padding-left: 60px;">
+               <div class="timeline-dot position-absolute bg-dark border border-secondary rounded-circle d-flex align-items-center justify-content-center" style="left: 6px; top: 0; width: 30px; height: 30px;"><i class="fas fa-shield-alt text-secondary small"></i></div>
+               <h4 class="text-white m-0">Introduction to Cyber Security</h4>
+             </div>
+             <!-- Topic 2 -->
+             <div class="timeline-item position-relative mb-4" style="padding-left: 60px;">
+               <div class="timeline-dot position-absolute bg-dark border border-secondary rounded-circle d-flex align-items-center justify-content-center" style="left: 6px; top: 0; width: 30px; height: 30px;"><i class="fas fa-key text-secondary small"></i></div>
+               <h4 class="text-white m-0">Password & Identity Security</h4>
+             </div>
+             <!-- Topic 3 -->
+             <div class="timeline-item position-relative mb-4" style="padding-left: 60px;">
+               <div class="timeline-dot position-absolute bg-dark border border-secondary rounded-circle d-flex align-items-center justify-content-center" style="left: 6px; top: 0; width: 30px; height: 30px;"><i class="fas fa-envelope text-secondary small"></i></div>
+               <h4 class="text-white m-0">Email Security & Phishing</h4>
+             </div>
+             <!-- Topic 4 -->
+             <div class="timeline-item position-relative mb-4" style="padding-left: 60px;">
+               <div class="timeline-dot position-absolute bg-dark border border-secondary rounded-circle d-flex align-items-center justify-content-center" style="left: 6px; top: 0; width: 30px; height: 30px;"><i class="fas fa-share-alt text-secondary small"></i></div>
+               <h4 class="text-white m-0">Social Media & Digital Footprint</h4>
+             </div>
+             <!-- Topic 5 -->
+             <div class="timeline-item position-relative mb-4" style="padding-left: 60px;">
+               <div class="timeline-dot position-absolute bg-dark border border-secondary rounded-circle d-flex align-items-center justify-content-center" style="left: 6px; top: 0; width: 30px; height: 30px;"><i class="fas fa-mobile-alt text-secondary small"></i></div>
+               <h4 class="text-white m-0">Mobile Security</h4>
+             </div>
+             <!-- Topic 6 -->
+             <div class="timeline-item position-relative mb-4" style="padding-left: 60px;">
+               <div class="timeline-dot position-absolute bg-dark border border-secondary rounded-circle d-flex align-items-center justify-content-center" style="left: 6px; top: 0; width: 30px; height: 30px;"><i class="fas fa-laptop-house text-secondary small"></i></div>
+               <h4 class="text-white m-0">Workplace Cyber Security</h4>
+             </div>
+             <!-- Topic 7 -->
+             <div class="timeline-item position-relative mb-4" style="padding-left: 60px;">
+               <div class="timeline-dot position-absolute bg-dark border border-secondary rounded-circle d-flex align-items-center justify-content-center" style="left: 6px; top: 0; width: 30px; height: 30px;"><i class="fas fa-robot text-secondary small"></i></div>
+               <h4 class="text-white m-0">Artificial Intelligence & Cyber Security</h4>
+             </div>
+             <!-- Topic 8 -->
+             <div class="timeline-item position-relative" style="padding-left: 60px;">
+               <div class="timeline-dot position-absolute bg-dark border border-secondary rounded-circle d-flex align-items-center justify-content-center" style="left: 6px; top: 0; width: 30px; height: 30px;"><i class="fas fa-gavel text-secondary small"></i></div>
+               <h4 class="text-white m-0">Cyber Laws & Compliance</h4>
+             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING & THE VALUE STACK -->
+  <section class="py-5 border-top border-secondary" style="background: var(--charcoal);" id="register">
+    <div class="container py-5">
+      <div class="row align-items-center">
+        <!-- The Value Stack -->
+        <div class="col-lg-6 mb-5 mb-lg-0 reveal">
+          <h2 class="section-title mb-4">Your Registration <span class="text-white">Includes</span></h2>
+          
+          <ul class="list-unstyled mb-4">
+            <li class="mb-3 fs-5 d-flex justify-content-between">
+              <span><i class="fas fa-check text-success me-3"></i>Masterclass Registration</span>
+              <span class="text-muted">₹3,000</span>
+            </li>
+            <li class="mb-3 fs-5 d-flex justify-content-between">
+              <span><i class="fas fa-check text-success me-3"></i>Security Resource Guide</span>
+              <span class="text-muted">₹1,000</span>
+            </li>
+            <li class="mb-3 fs-5 d-flex justify-content-between">
+              <span><i class="fas fa-check text-success me-3"></i>Networking Opportunity</span>
+              <span class="text-muted">₹1,000</span>
+            </li>
+            <li class="mb-3 fs-5 d-flex justify-content-between">
+              <span><i class="fas fa-check text-success me-3"></i>Cyber Hygiene Checklist</span>
+              <span class="text-muted">₹500</span>
+            </li>
+            <li class="mb-3 fs-5 d-flex justify-content-between">
+              <span><i class="fas fa-check text-success me-3"></i>Participation Certificate</span>
+              <span class="text-muted">₹500</span>
+            </li>
+          </ul>
+          
+          <div class="d-flex justify-content-between pb-3 mb-4 text-white border-top border-secondary pt-3">
+            <span class="fs-4 fw-bold text-white">Total Value:</span>
+            <span class="fs-4 fw-bold text-white text-decoration-line-through">₹6,000+</span>
+          </div>
+        </div>
+        
+        <div class="col-lg-5 offset-lg-1 reveal reveal-delay-1">
+          <div class="saas-card text-center position-relative overflow-hidden" style="padding: 3rem;">
+            <div class="position-absolute top-0 end-0 bg-secondary text-white px-3 py-1 rounded-bl fw-bold" style="border-bottom-left-radius: 8px;">Limited Seats</div>
+            <h3 class="mb-3 text-white">Secure Your Spot</h3>
+            
+            <div class="mb-4">
+               <span class="text-decoration-line-through text-muted fs-4">Regular Fee: ₹2,999</span><br>
+               <span class="display-4 fw-bold text-white">₹1,799</span><br>
+               <span class="badge bg-success fs-6 mt-2">Save ₹1,200 Today</span>
+            </div>
+            
+            <button class="btn-netflix w-100 py-3 fs-5 open-register-modal mb-3">Reserve My Seat</button>
+            
+            <div class="d-flex flex-column gap-2 text-muted small text-start">
+              <span><i class="fas fa-lock text-success me-2"></i>Secure Registration</span>
+              <span><i class="fas fa-file-invoice text-success me-2"></i>GST Included</span>
+              <span><i class="fas fa-users text-success me-2"></i>Limited to 100 participants</span>
+              <span><i class="fas fa-envelope text-success me-2"></i>Confirmation by Email and SMS</span>
+              <span><i class="fas fa-certificate text-success me-2"></i>Certificate Included</span>
+            </div>
+          </div>
+          
+          <div class="mt-4 p-4 rounded saas-card text-start position-relative">
+            <h5 class="text-white mb-2"><i class="fas fa-shield-alt text-success me-2"></i> Practical Skills Commitment</h5>
+            <p class="text-muted small m-0">Every participant leaves with a secured device checklist, actionable security settings, and resources they can apply immediately.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FREQUENTLY ASKED QUESTIONS -->
+  <section class="py-5 bg-charcoal border-top border-secondary">
+    <div class="container py-5">
+      <h2 class="section-title text-center reveal mb-5">Frequently Asked <span class="text-white">Questions</span></h2>
+      <div class="row justify-content-center reveal reveal-delay-1">
+        <div class="col-lg-8">
+          <div class="accordion" id="faqAccordion">
+            <div class="accordion-item bg-dark border-secondary border mb-3 rounded overflow-hidden">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed bg-dark text-white fw-bold shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                  I'm not technical. Is this still useful?
+                </button>
+              </h2>
+              <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body text-muted bg-charcoal">
+                  Absolutely. We designed this entirely for non-technical users. If you know how to use WhatsApp or open an email, you will easily be able to follow along and secure your devices.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item bg-dark border-secondary border mb-3 rounded overflow-hidden">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed bg-dark text-white fw-bold shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                  Isn't everything already on YouTube?
+                </button>
+              </h2>
+              <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body text-muted bg-charcoal">
+                  Information is on YouTube, but execution is not. This is an interactive awareness program where you'll see real-world scam demonstrations that aren't shown publicly.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item bg-dark border-secondary border mb-3 rounded overflow-hidden">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed bg-dark text-white fw-bold shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                  Will this help protect my parents too?
+                </button>
+              </h2>
+              <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body text-muted bg-charcoal">
+                  Yes! One of the biggest benefits is that you can take the exact settings and checklists from this program and apply them to your parents' phones when you get home.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item bg-dark border-secondary border mb-3 rounded overflow-hidden">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed bg-dark text-white fw-bold shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                  What if I already use antivirus?
+                </button>
+              </h2>
+              <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body text-muted bg-charcoal">
+                  Antivirus software only protects against known malware. Scammers today don't use malware—they use psychology to trick you into transferring money yourself (like AI voice cloning or fake QR codes). Antivirus won't stop that, but this awareness program will.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item bg-dark border-secondary border mb-3 rounded overflow-hidden">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed bg-dark text-white fw-bold shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                  What should I bring?
+                </button>
+              </h2>
+              <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body text-muted bg-charcoal">
+                  Just your fully charged smartphone (Android or iPhone). We will show you some practical settings you can check during the session.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item bg-dark border-secondary border rounded overflow-hidden">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed bg-dark text-white fw-bold shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
+                  Will there be live demonstrations?
+                </button>
+              </h2>
+              <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body text-muted bg-charcoal">
+                  Yes, we perform real-time demonstrations of how scammers clone voices using AI, intercept OTPs, and create fake QR codes. Seeing the scam happen is the best way to recognize it in the real world.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA VISION -->
+  <section class="py-5 bg-dark text-center border-top border-secondary">
+    <div class="container py-5 reveal">
+      <h2 class="mb-4 text-white">Three hours from now, you could leave with:</h2>
+      <div class="d-flex flex-column align-items-center mb-5">
+         <p class="fs-4 text-success m-1"><i class="fas fa-check-circle me-2"></i> A more secure phone</p>
+         <p class="fs-4 text-success m-1"><i class="fas fa-check-circle me-2"></i> Stronger passwords</p>
+         <p class="fs-4 text-success m-1"><i class="fas fa-check-circle me-2"></i> Better protection for your banking apps</p>
+         <p class="fs-4 text-success m-1"><i class="fas fa-check-circle me-2"></i> Greater confidence recognizing online scams</p>
+      </div>
+      <p class="fs-5 text-muted mb-4 fst-italic">Every day you delay is another day you're exposed to scams you may not recognize.</p>
+      <button class="btn-netflix open-register-modal px-5 py-3 fs-4">Reserve Your Seat – ₹3,000</button>
+    </div>
+  </section>
+
+  <!-- REGISTRATION MODAL -->
+  <div class="modal-overlay" id="registerModal" style="background: rgba(0,0,0,0.85); z-index: 99999 !important;">
+    <div class="modal-content" style="background: var(--charcoal); border: 1px solid var(--netflix-red);">
+      <button class="modal-close text-white" id="closeModal">&times;</button>
+      <h3 class="text-white mb-1">Reserve Your Seat</h3>
+      <p class="text-muted mb-4">Takes less than 30 seconds.</p>
+      
+      <form id="registrationForm" onsubmit="submitForm(event)">
+        <!-- Details Section -->
+        <div id="detailsSection">
+          <div class="mb-3">
+            <label class="form-label text-light">Full Name</label>
+            <input type="text" class="form-control bg-dark text-white border-secondary" id="name" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label text-light">Email Address</label>
+            <input type="email" class="form-control bg-dark text-white border-secondary" id="email" required>
+          </div>
+          <div class="mb-4">
+            <label class="form-label text-light">WhatsApp Number</label>
+            <input type="tel" class="form-control bg-dark text-white border-secondary" id="phone" required>
+          </div>
+          <button type="submit" class="btn-netflix w-100 py-3 fs-5" id="submitBtn">Proceed to Payment - ₹3,000</button>
+        </div>
+
+        <!-- QR Payment Section (Hidden initially) -->
+        <div id="qrPaymentSection" style="display: none;" class="text-center mt-2">
+          <p class="text-white mb-2 fs-5">Scan to pay <strong>₹3,000</strong></p>
+          <div class="bg-white p-3 rounded d-inline-block mb-3">
+            <img src="img/qr.jpg" alt="UPI QR Code" style="width: 250px; height: 250px; object-fit: contain;">
+          </div>
+          <p class="text-light mb-1">UPI ID: <strong>xcitehub348@fbl</strong></p>
+          <p class="text-muted small mb-4">Please complete the payment on your UPI app first.</p>
+          
+          <button type="button" class="btn btn-success w-100 py-3 fs-5 fw-bold" id="paymentDoneBtn" onclick="handlePaymentDone()">
+            <i class="fab fa-whatsapp me-2"></i> I have completed the payment
+          </button>
+          <p class="text-muted small mt-3">Clicking this will open WhatsApp to confirm your seat.</p>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <footer class="py-5 bg-dark border-top border-secondary">
+    <div class="container">
+      <div class="row gy-4">
+        <div class="col-md-4 text-center text-md-start">
+          <div class="d-flex justify-content-center justify-content-md-start align-items-center gap-3 mb-4">
+            <img src="img/logo-white.png" alt="Exabeam" style="height: 30px; object-fit: contain;">
+            <div class="vr bg-secondary" style="height: 20px; width: 2px;"></div>
+            <img src="img/official-cyber-shield-logo.png" alt="Cyber Shield Foundation" style="height: 40px; object-fit: contain; background: white; padding: 3px; border-radius: 4px;">
+          </div>
+          <h5 class="text-white mb-2">Cyber Shield Foundation</h5>
+          <p class="text-muted small mb-0">Empowering individuals against digital threats.</p>
+        </div>
+        
+        <div class="col-md-4 text-center text-md-start">
+          <h5 class="text-white mb-3">Contact Information</h5>
+          <ul class="list-unstyled text-muted small">
+            <li class="mb-2"><i class="fas fa-map-marker-alt me-2 text-secondary"></i> Crowne Plaza, Kochi</li>
+            <li class="mb-2"><i class="fas fa-phone me-2 text-secondary"></i> +91 98765 43210</li>
+            <li class="mb-2"><i class="fas fa-envelope me-2 text-secondary"></i> support@cybershield.in</li>
+            <li class="mb-2"><i class="fab fa-whatsapp me-2 text-success"></i> WhatsApp Support</li>
+          </ul>
+        </div>
+        
+        <div class="col-md-4 text-center text-md-end">
+          <h5 class="text-white mb-3">Quick Links</h5>
+          <ul class="list-unstyled text-muted small">
+            <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Google Maps Directions</a></li>
+            <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Privacy Policy</a></li>
+            <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Terms of Service</a></li>
+          </ul>
+          <p class="text-muted small mt-4 m-0">&copy; 2026 Cyber Shield Foundation. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+    // Countdown Timer Logic (3 Days from page load for demo purposes)
+    // To use a fixed date, set countDownDate to: new Date("Aug 10, 2026 00:00:00").getTime()
+    let countDownDate = new Date().getTime() + (3 * 24 * 60 * 60 * 1000) + (14 * 60 * 60 * 1000); 
+
+    const x = setInterval(function() {
+      const now = new Date().getTime();
+      const distance = countDownDate - now;
+
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("heroTimer").innerHTML = "<p class='text-netflix-red fs-4'>Pricing has ended</p>";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("days").innerHTML = days.toString().padStart(2, '0');
+      document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
+      document.getElementById("mins").innerHTML = minutes.toString().padStart(2, '0');
+      document.getElementById("secs").innerHTML = seconds.toString().padStart(2, '0');
+      
+      document.getElementById("stickyCountdown").innerHTML = `Ends in: ${days.toString().padStart(2, '0')}:${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    }, 1000);
+
+
+    // Reveal Animations
+    function reveal() {
+      var reveals = document.querySelectorAll(".reveal");
+      for (var i = 0; i < reveals.length; i++) {
+        var windowHeight = window.innerHeight;
+        var elementTop = reveals[i].getBoundingClientRect().top;
+        var elementVisible = 50;
+        if (elementTop < windowHeight - elementVisible) {
+          reveals[i].classList.add("active");
+        }
+      }
+    }
+    window.addEventListener("scroll", reveal);
+    reveal();
+
+    // Sticky CTA Logic
+    const stickyCtaMobile = document.getElementById('stickyCtaMobile');
+    const stickyCtaDesktop = document.getElementById('stickyCtaDesktop');
+    const registerSection = document.getElementById('register');
+    
+    window.addEventListener('scroll', () => {
+      const regRect = registerSection.getBoundingClientRect();
+      const pastHero = window.scrollY > 400;
+      
+      // Mobile Logic
+      if (window.innerWidth < 768) {
+        if (pastHero && regRect.top > window.innerHeight) {
+          stickyCtaMobile.classList.add('visible');
+        } else {
+          stickyCtaMobile.classList.remove('visible');
+        }
+      }
+      
+      // Desktop Logic
+      if (window.innerWidth >= 768) {
+        if (pastHero && regRect.top > window.innerHeight) {
+          stickyCtaDesktop.style.opacity = '1';
+        } else {
+          stickyCtaDesktop.style.opacity = '0';
+        }
+      }
+    });
+
+    // Modal Logic
+    const modal = document.getElementById('registerModal');
+    const closeModalBtn = document.getElementById('closeModal');
+    const openBtns = document.querySelectorAll('.open-register-modal');
+
+    openBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        modal.classList.add('active');
+      });
+    });
+
+    closeModalBtn.addEventListener('click', () => {
+      modal.classList.remove('active');
+    });
+
+    window.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('active');
+      }
+    });
+
+    // Form Submission
+    function submitForm(e) {
+      e.preventDefault();
+      const btn = document.getElementById('submitBtn');
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+      btn.disabled = true;
+      
+      // Simulate API call
+      setTimeout(() => {
+        document.getElementById('detailsSection').style.display = 'none';
+        document.getElementById('qrPaymentSection').style.display = 'block';
+        document.querySelector('.modal-content h3').innerText = 'Complete Payment';
+        document.querySelector('.modal-content p').innerText = 'Scan the QR code to secure your seat.';
+      }, 1500);
+    }
+
+    // Handle Payment Done
+    function handlePaymentDone() {
+      const name = document.getElementById('name').value || 'Participant';
+      const phone = document.getElementById('phone').value || '';
+      const email = document.getElementById('email').value || '';
+      
+      const message = `Hi, I have completed the payment for the Cyber Security Awareness Program.\n\nName: ${name}\nPhone: ${phone}\nEmail: ${email}`;
+      const encodedMessage = encodeURIComponent(message);
+      const whatsappUrl = `https://wa.me/919207189222?text=${encodedMessage}`;
+      
+      window.location.href = whatsappUrl;
+    }
+
+    // iMessage Quiz Logic
+    function revealImessage() {
+      document.getElementById('imessageQuiz').classList.add('revealed');
+    }
+    function closeImessage() {
+      document.getElementById('imessageQuiz').classList.remove('revealed');
+    }
+  </script>
+</body>
+</html>
