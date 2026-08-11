@@ -777,19 +777,37 @@
     });
 
     // Form Submission
-    function submitForm(e) {
+    async function submitForm(e) {
       e.preventDefault();
       const btn = document.getElementById('submitBtn');
       btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
       btn.disabled = true;
       
-      // Simulate API call
-      setTimeout(() => {
-        document.getElementById('detailsSection').style.display = 'none';
-        document.getElementById('qrPaymentSection').style.display = 'block';
-        document.querySelector('.modal-content h3').innerText = 'Complete Payment';
-        document.querySelector('.modal-content p').innerText = 'Scan the QR code to secure your seat.';
-      }, 1500);
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+
+      const data = { name, email, phone };
+      
+      // REPLACE THIS URL WITH YOUR GOOGLE APPS SCRIPT WEB APP URL
+      const scriptURL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE'; 
+      
+      try {
+        if (scriptURL !== 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE') {
+          await fetch(scriptURL, {
+            method: 'POST',
+            body: JSON.stringify(data)
+          });
+        }
+      } catch (error) {
+        console.error('Error submitting lead to Google Sheets:', error);
+      }
+      
+      // Proceed to Payment QR Section
+      document.getElementById('detailsSection').style.display = 'none';
+      document.getElementById('qrPaymentSection').style.display = 'block';
+      document.querySelector('.modal-content h3').innerText = 'Complete Payment';
+      document.querySelector('.modal-content p').innerText = 'Scan the QR code to secure your seat.';
     }
 
     // Handle Payment Done
