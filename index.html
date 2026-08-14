@@ -789,14 +789,15 @@
 
       const data = { name, email, phone };
       
-      // REPLACE THIS URL WITH YOUR GOOGLE APPS SCRIPT WEB APP URL
-      const scriptURL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE'; 
+      // Google Apps Script Web App URL
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbysOdWSkLuWbNUT6547Hxcl_6kRk0f0Y_umzT619Uem5gGMCL5AFKTMsrNvsKfXi-K4-g/exec'; 
       
       try {
         if (scriptURL !== 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE') {
           await fetch(scriptURL, {
             method: 'POST',
-            body: JSON.stringify(data)
+            body: JSON.stringify(data),
+            mode: 'no-cors'
           });
         }
       } catch (error) {
